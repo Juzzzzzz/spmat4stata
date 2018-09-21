@@ -1,0 +1,10 @@
+Package: spmat4stata
+Type: Package
+Title: Create Spatial Weight Matrix for Stata(15)
+Version: 0.1.0
+Author: Joodler
+Maintainer: Joodler <amistsss@163.com>
+Description: Creating Spatial Weight Matrix for Stata(15).
+License: MIT
+Encoding: UTF-8
+LazyData: true
