@@ -1,14 +1,25 @@
-# data_long: 长格式的空间权重矩阵
-# country_id: 国家或地区的 ID 的列名
-# counter_id: 目标国家或地区的 ID 的列名
-# contiguity: 权重列的列名
-# id_is_int: 国家或地区的 ID 是否为整数型变量
-# W_style: 对空间权重做什么样的标准化处理，默认 `NULL` 为不做处理，参考包 `spdep`
+#' Long format to Matrix format
+#'
+#' @param data_long 长格式的空间权重矩阵
+#' @param country_id 国家或地区的 ID 的列名
+#' @param counter_id 目标国家或地区的 ID 的列名
+#' @param contiguity 权重列的列名
+#' @param id_is_int 国家或地区的 ID 是否为整数型变量
+#' @param W_style 对空间权重做什么样的标准化处理，默认 `NULL` 为不做处理，参考包 `spdep`
+#' @param ... Arguments
+#' @return m_df 数据框格式的矩阵型空间权重矩阵，第一列代表 ID
+#' @return check_list 原来字符型的 ID 与新生成的整数型 ID 的对照表
+#' @examples
+#' long2mat(data_long = queen_long, country_id = "Country ISO3 Code",
+#'          counter_id = "Counterpart Country ISO3 Code", contiguity = "Contiguity",
+#'          id_is_int = FALSE, W_style = "W")
+#' @export
+#' @importFrom dplyr select mutate rename left_join as_tibble n
+#' @importFrom tidyr spread
+#' @importFrom spdep mat2listw listw2mat
+#' @importFrom magrittr "%>%"
 
-# m_df: 数据框格式的矩阵型空间权重矩阵，第一列代表 ID
-# check_list: 原来字符型的 ID 与新生成的整数型 ID 的对照表
-
-long2mat <- function(data_long, country_id, counter_id, contiguity, 
+long2mat <- function(data_long, country_id, counter_id, contiguity,
                      ..., id_is_int = FALSE, W_style = NULL) {
   if (id_is_int) {
     # 如果国家或地区的 ID 是整数型变量，那么就可以直接选取
@@ -24,7 +35,7 @@ long2mat <- function(data_long, country_id, counter_id, contiguity,
 
     scid_cid <- da %>%
       select(sc_id) %>%
-      unique.data.frame(.) %>%
+      unique.data.frame() %>%
       mutate(c_id = c(1:n()))
 
     sccid_ccid <- scid_cid %>%
@@ -32,7 +43,7 @@ long2mat <- function(data_long, country_id, counter_id, contiguity,
 
     da <- da %>% left_join(scid_cid) %>% left_join(sccid_ccid) %>%
       select(c_id, cc_id, Contiguity)
-    
+
     check_list <- scid_cid %>%
       `colnames<-`(c(country_id, "ID"))
 
