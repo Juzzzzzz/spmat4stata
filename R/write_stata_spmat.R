@@ -18,6 +18,7 @@ write_stata_spmat <- function(long2mat_list, file_name, save_check_list = FALSE)
   m_df <- long2mat_list$m_df
   n <- nrow(m_df)
   m <- data.frame(apply(m_df, 1, function(x) str_c(x, collapse = ' ')))
+  colnames(m) <- n
   write.table(m, str_glue("{file_name}.txt"), quote = FALSE, row.names = FALSE)
   if (!long2mat_list$id_is_int & save_check_list) {
     write_csv(long2mat_list$check_list, str_glue("{file_name}_ID_check_list.csv"))
