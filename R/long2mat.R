@@ -6,7 +6,6 @@
 #' @param contiguity 权重列的列名
 #' @param id_is_int 国家或地区的 ID 是否为整数型变量
 #' @param W_style 对空间权重做什么样的标准化处理，默认 `NULL` 为不做处理，参考包 `spdep`
-#' @param ... Arguments
 #' @return m_df 数据框格式的矩阵型空间权重矩阵，第一列代表 ID
 #' @return check_list 原来字符型的 ID 与新生成的整数型 ID 的对照表
 #' @examples
@@ -20,7 +19,7 @@
 #' @importFrom magrittr "%>%"
 
 long2mat <- function(data_long, country_id, counter_id, contiguity,
-                     ..., id_is_int = FALSE, W_style = NULL) {
+                     id_is_int = FALSE, W_style = NULL) {
   if (id_is_int) {
     # 如果国家或地区的 ID 是整数型变量，那么就可以直接选取
     da <- data_long %>%
