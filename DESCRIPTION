@@ -1,7 +1,7 @@
 Package: spmat4stata
 Type: Package
 Title: Create Spatial Weight Matrix for Stata15
-Version: 0.1.0
+Version: 0.2.0
 Author@R: person("Joodler", "Ju", role = c("aut", "cre",
                  email = ""amistsss@163.com))
 Author: Joodler Ju [aut, cre]
@@ -11,11 +11,12 @@ Description: Convert spatial weight matrix to the
 Depends:
     R (>= 3.4)
 Imports:
+    dplyr,
     magrittr,
-    dplyr, 
-    tidyr, 
     readr, 
-    spdep
+    spdep,
+    stringr,
+    tidyr
 Suggests: tidyverse
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -23,5 +24,6 @@ LazyData: true
 Collate: 
     'data.R'
     'long2mat.R'
+    'write_stata_spmat.R'
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 6.1.0

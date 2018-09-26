@@ -4,7 +4,7 @@
 \alias{long2mat}
 \title{Long format to Matrix format}
 \usage{
-long2mat(data_long, country_id, counter_id, contiguity, ...,
+long2mat(data_long, country_id, counter_id, contiguity,
   id_is_int = FALSE, W_style = NULL)
 }
 \arguments{
@@ -15,8 +15,6 @@ long2mat(data_long, country_id, counter_id, contiguity, ...,
 \item{counter_id}{目标国家或地区的 ID 的列名}
 
 \item{contiguity}{权重列的列名}
-
-\item{...}{Arguments}
 
 \item{id_is_int}{国家或地区的 ID 是否为整数型变量}
 
