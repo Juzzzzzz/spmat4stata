@@ -1,7 +1,7 @@
 Package: spmat4stata
 Type: Package
 Title: Create Spatial Weight Matrix for Stata15
-Version: 0.2.0
+Version: 0.2.1
 Author@R: person("Joodler", "Ju", role = c("aut", "cre",
                  email = ""amistsss@163.com))
 Author: Joodler Ju [aut, cre]
